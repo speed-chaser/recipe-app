@@ -4,13 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chase's Recipe App</title>
+    <title>{{object.name}} Recipe</title>
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static '../../static/home/home-style.css' %}"
+      href="{% static 'recipes/recipe-detail-style.css' %}"
     />
-
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -53,33 +52,21 @@
       <li><a href="/">Home</a></li>
       <li><a href="{% url 'recipes:list' %}">Recipes</a></li>
     </ul>
-    <div class="header">
-      <h1>Chase's Recipes</h1>
-      <p>Explore and Share Delicious Recipes</p>
-    </div>
+    <p class="title">{{object.name}}</p>
+    <div class="details">
+      <div class="details-text">
+        <p><b>Cooking time: </b> {{object.cooking_time}} minutes</p>
+        <br />
 
-    <div class="main-content">
-      <div class="recipe-card">
-        <img src="{% static 'home/images/spaghetti.jpg' %}" alt="Recipe 1" />
-        <h3>Spaghetti Bolognese</h3>
-        <p>Classic Italian pasta dish with a hearty meat sauce</p>
+        <p><b>Description: </b> {{object.description}}</p>
+        <br />
+
+        <p><b>Ingredients: </b> {{object.ingredients}}</p>
+        <br />
       </div>
-
-      <div class="recipe-card">
-        <img src="{% static 'home/images/pancakes.jpg' %}" alt="Recipe 2" />
-        <h3>Pancakes</h3>
-        <p>Delicious buttermilk pancakes</p>
+      <div>
+        <img src="{{object.pic.url}}" />
       </div>
-
-      <div class="recipe-card">
-        <img src="{% static 'home/images/cookies.jpg' %}" alt="Recipe 3" />
-        <h3>Chocolate Chip Cookies</h3>
-        <p>Homemade cookies with gooey chocolate chips</p>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p>&copy; 2024 Chase's Recipes. All rights reserved.</p>
     </div>
   </body>
 </html>

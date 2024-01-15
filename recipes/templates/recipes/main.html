@@ -4,13 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chase's Recipe App</title>
+    <title>Recipes list</title>
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static '../../static/home/home-style.css' %}"
+      href="{% static 'recipes/recipes-style.css' %}"
     />
-
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -53,33 +52,29 @@
       <li><a href="/">Home</a></li>
       <li><a href="{% url 'recipes:list' %}">Recipes</a></li>
     </ul>
-    <div class="header">
-      <h1>Chase's Recipes</h1>
-      <p>Explore and Share Delicious Recipes</p>
-    </div>
 
-    <div class="main-content">
-      <div class="recipe-card">
-        <img src="{% static 'home/images/spaghetti.jpg' %}" alt="Recipe 1" />
-        <h3>Spaghetti Bolognese</h3>
-        <p>Classic Italian pasta dish with a hearty meat sauce</p>
+    <h1>Recipes List</h1>
+    <div class="table-container">
+      <div class="table-grid">
+        {% for object in object_list %}
+        <div class="table-item">
+          <a href="{{object.get_absolute_url}}">
+            <p class="table-recipe-name">{{object.name}}</p>
+            <img class="table-recipe-img" src="{{object.pic.url}}" />
+          </a>
+        </div>
+        {% endfor %}
       </div>
-
-      <div class="recipe-card">
-        <img src="{% static 'home/images/pancakes.jpg' %}" alt="Recipe 2" />
-        <h3>Pancakes</h3>
-        <p>Delicious buttermilk pancakes</p>
+      <div class="table-row">
+        {% if object_list|length == 2 %}
+        <div class="table-item">
+          <a href="{{object_list.1.get_absolute_url}}">
+            <p class="table-recipe-name">{{object_list.1.name}}</p>
+            <img class="table-recipe-img" src="{{object_list.1.pic.url}}" />
+          </a>
+        </div>
+        {% endif %}
       </div>
-
-      <div class="recipe-card">
-        <img src="{% static 'home/images/cookies.jpg' %}" alt="Recipe 3" />
-        <h3>Chocolate Chip Cookies</h3>
-        <p>Homemade cookies with gooey chocolate chips</p>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p>&copy; 2024 Chase's Recipes. All rights reserved.</p>
     </div>
   </body>
 </html>
